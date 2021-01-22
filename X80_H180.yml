@@ -1,0 +1,132 @@
+Lumi: 100000
+
+SignalSamples:
+  Signal_XZ:
+    Yq_Yl_0p01:
+      file: Inputs/XZ_X80_H180_Yl_Yq_0.01_mvaIn.root
+      xsec: 0.03496
+      nEvents: 500000
+
+    Yq_Yl_0p03:
+      file: Inputs/XZ_X80_H180_Yl_Yq_0.03_mvaIn.root
+      xsec: 0.0853
+      nEvents: 500000
+
+    Yq_Yl_0p0033:
+      file: Inputs/XZ_X80_H180_Yl_Yq_0.0033_mvaIn.root
+      xsec: 0.00411
+      nEvents: 500000
+
+    Yq_0p01_Yl_0p03:
+      file: Inputs/XZ_X80_H180_Yl_0.03_Yq_0.01_mvaIn.root
+      xsec: 0.00104
+      nEvents: 500000
+
+    Yq_0p01_Yl_0p0033:
+      file: Inputs/XZ_X80_H180_Yl_0.0033_Yq_0.01_mvaIn.root
+      xsec: 0.0343
+      nEvents: 500000
+
+  Signal_H2Z:
+    Yq_Yl_0p01:
+      file: Inputs/H2Z_H180_X80_Yl_Yq_0.01_mvaIn.root
+      xsec: 0.0000194
+      nEvents: 500000
+
+    Yq_Yl_0p03:
+      file: Inputs/H2Z_H180_X80_Yl_Yq_0.03_mvaIn.root
+      xsec: 0.000504
+      nEvents: 500000
+
+    Yq_Yl_0p0033:
+      file: Inputs/H2Z_H180_X80_Yl_Yq_0.0033_mvaIn.root
+      xsec: 0.0000003003
+      nEvents: 500000
+
+    Yq_0p01_Yl_0p03:
+      file: Inputs/H2Z_H180_X80_Yl_0.03_Yq_0.01_mvaIn.root
+      xsec: 0.00001489
+      nEvents: 500000
+
+    Yq_0p01_Yl_0p0033:
+      file: Inputs/H2Z_H180_X80_Yl_0.0033_Yq_0.01_mvaIn.root
+      xsec: 0.00002003
+      nEvents: 500000
+
+
+Train_Background:
+  WZTo3LNu_012Jets:
+    file: Inputs/WZTo3LNu_xz_mvaIn.root
+    xsec: 5.0
+    nEvents: 9910270
+
+Other_Background:
+  TTJets_2L:
+    file: Inputs/TTJets_xz_mvaIn.root
+    xsec: 95.04
+    nEvents: 10855427
+
+  TTWJetsToLNu:
+    file: Inputs/TTWJetsToLNu_xz_mvaIn.root
+    xsec: 0.204
+    nEvents: 4765526
+
+  WWW:
+    file: Inputs/WWW_XZ_mvaIn.root
+    xsec: 0.2362
+    nEvents: 240000
+  
+  WWZ:
+    file: Inputs/WWZ_XZ_mvaIn.root
+    xsec: 0.1889
+    nEvents: 250000
+
+  WZZ:
+    file: Inputs/WZZ_XZ_mvaIn.root
+    xsec: 0.06376
+    nEvents: 246800
+
+  ZZZ:
+    file: Inputs/ZZZ_XZ_mvaIn.root
+    xsec: 0.0158
+    nEvents: 249237
+
+clsWeightFac: 1.0
+
+# InputVariables / [to plot : ] / nBins / xLow / xHigh
+InputVariables:
+  - hLepPt/50/0/200
+  - mT/60/0/300
+  - mTovSt/20/0/2
+  - met/50/0/200
+  - muTaDR/50/0/5
+  - muZDR/50/0/5
+  #- X_muMetMT
+  #- XZPlane_Angle
+  #- XHelicity_Angle
+  #- PropHelicity_Angle
+  #- nJets
+  #- tauPt
+  #- XMetPlane_Angle
+  #- ZMetPlane_Angle
+  #- nTaus
+
+modelParams:
+  Layers: [64,24,12,3]
+  BatchNorms: [True,True,True,False]
+  Dropout: [0.2,0.2,0.1,0.]
+  L2: [0.01,0.001,0.,0.]
+  activ: ['relu','relu','relu','softmax']
+
+trainingParams:
+  Loss: 'categorical_crossentropy'
+  LR: 0.001
+  Metrics: ['categorical_accuracy']
+  trainTestSplit: 0.85
+  valSplit: 0.20
+  BatchSize: 1000
+  epoch: 20
+
+nEvPerSigSample: 10000
+outDir: '/Users/gourab/Desktop/HiggsProject/FINAL/DNN/Outputs/'
+modelDir: '/Users/gourab/Desktop/HiggsProject/FINAL/DNN/Models/'
